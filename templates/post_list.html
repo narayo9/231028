@@ -2,7 +2,7 @@
 
 <ul>
 {% for post in post_list %}
-   <li>{{ post.title }}</li>
+   <li><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></li>
 {% endfor %}
 </ul>
 <a href="{% url 'post_create' %}"><button>새로운 글 생성하기</button></a>
