@@ -1,5 +1,22 @@
-
 <h3>{{ object.title }}</h3>
 <span>{{ object.created_at }}</span>
 <p>{{ object.description }}</p>
 <span>{{ object.created_by }}</span>
+
+
+{% if user.is_authenticated %}
+<div>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="댓글 작성">
+    </form>
+</div>
+{% endif %}
+
+
+<ul>
+    {% for comment in object.comment_set.all %}
+        <li><strong>{{ comment.created_by }}: </strong>{{ comment.description }}</li>
+    {% endfor %}
+</ul>
